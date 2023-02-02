@@ -12,6 +12,6 @@ export default async function handler(
   const result = await (await fetch(process.env.ENDPOINT as unknown as URL))
 
   const json = await result.json() as unknown;
-  res.setHeader('Cache-Control', 's-maxage=${cacheTime}');
+  res.setHeader('Cache-Control', `s-maxage=${cacheTime}`);
   return res.status(200).json({ json })
 }

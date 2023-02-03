@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const cacheTime = 30;
+const cacheTime = 300;
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,6 +12,6 @@ export default async function handler(
   const result = await (await fetch(process.env.ENDPOINT as unknown as URL))
 
   const json = await result.json() as unknown;
-  res.setHeader('Cache-Control', `max-age=0, s-maxage=300`);
+  res.setHeader('Cache-Control', `max-age=0, s-maxage=${cacheTime}`);
   return res.status(200).json({ json })
 }

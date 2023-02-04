@@ -1,6 +1,8 @@
 import delay from '../../utils/promiseTimeout';
-
 import type { GetStaticProps, GetStaticPropsContext } from 'next'
+import JsonFormatter from 'react-json-formatter'
+import { useFlags } from 'flagsmith/react';
+
 
 type PostProps = {
   post: {
@@ -9,10 +11,27 @@ type PostProps = {
   }
 }
 
-export default function Page({ post }: PostProps) {
-  if (!post) return <div>Loading...</div>
 
-  return JSON.stringify(post);
+export default function Page({ post }: PostProps) {
+  const flags = useFlags(['abc']);
+
+  const jsonStyle = {
+    propertyStyle: { color: 'red' },
+    stringStyle: { color: 'green' },
+    numberStyle: { color: 'darkorange' },
+  }
+  
+
+  const Template = ({children}: React.PropsWithChildren) => (
+    <div>
+      <h1>ISR Page</h1>
+      {children}
+    </div>
+  )
+
+  if (!post) return <Template><p>Loading...</p></Template>
+
+  return <Template><JsonFormatter json={JSON.stringify({...post, flags})} jsonStyle={jsonStyle} /></Template>;
 }
 
 export const getStaticProps: GetStaticProps = async ({params}: GetStaticPropsContext) => {
@@ -21,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({params}: GetStaticPropsCon
     throw new Error(`Error happened for id: ${params.id}`)
   }
 
-  await delay(Math.random() * 10000);
+  await delay(Math.random() * 3000);
 
   return {
     props: {
@@ -31,7 +50,7 @@ export const getStaticProps: GetStaticProps = async ({params}: GetStaticPropsCon
         params
       },
     },
-    revalidate: 10, // ISR. Revalidation time in seconds
+    revalidate: 30, // ISR. Revalidation time in seconds
   };
 }
 

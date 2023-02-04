@@ -1454,6 +1454,11 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-json-formatter@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-json-formatter/-/react-json-formatter-0.3.2.tgz#f2374a80442f6d977eb1bc3a011194ffaff471f5"
+  integrity sha512-RjYM+hFcgm4x3Opt+fZCH3LktF6VfcQB/CtJX/SGd2Hko6RvL4dJw/BW17gRg7DLAHM7aKMt/ms/MroARalxoQ==
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"

@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-const { curly } = require('node-libcurl');
+// const { curly } = require('node-libcurl');
+import fetch from 'isomorphic-fetch';
 
 const handler = async (request: NextApiRequest, response: NextApiResponse<unknown>) => {
   const {
@@ -15,8 +16,10 @@ const handler = async (request: NextApiRequest, response: NextApiResponse<unknow
 
   const httpHeader = Object.entries(headers).map(([key, value]) => `${key}: ${value}`);
 
-  const { data } = await curly.get(decodeURIComponent(redirect as string), {httpHeader});
+  // const { data } = await curly.get(decodeURIComponent(redirect as string), {httpHeader});
   
+  const data = await (await fetch(decodeURIComponent(redirect as string), {headers: headers as HeadersInit})).json();
+
   // Set the Vercel shared cache time
   // response.setHeader('Cache-Control', `max-age=0, s-maxage=${cacheTime}`)
 

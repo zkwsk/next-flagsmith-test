@@ -46,7 +46,7 @@ export const getServerSideProps: GetStaticProps = async ({params}: GetStaticProp
     props: {
       post: {
         title: 'Hello World!',
-        time: new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long', timeZone: 'Australia/Sydney' }).format(new Date()),
+        time: new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long', timeZone: 'Europe/Copenhagen' }).format(new Date()),
         params
       },
     },
